@@ -1,115 +1,95 @@
+import Layout from "@/components/Layout";
 import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaw } from '@fortawesome/free-solid-svg-icons';
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { news } from "@/lib/news";
+import { parse } from 'date-fns';
 
 export default function Home() {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Layout>
+      <section className="max-w-3xl mx-auto p-4 space-y-6">
+
+        {/* 名前＋アイコン */}
+        <h1 className="{engFont.className} text-7xl font-bold flex items-center gap-3">
+          <FontAwesomeIcon icon={faPaw} className="text-rose-300 w-25 h25" />
+          K.Mio
+        </h1>
+
+        {/* 吹き出しエリア（画像右、吹き出し左） */}
+        <div className="flex items-center gap-4 justify-end ">
+          <p
+            className="relative bg-rose-50 text-gray-900 p-6 rounded-[2rem] max-w-md shadow-lg font-medium
+  before:content-[''] before:absolute before:top-8 before:right-[-24px]
+  before:border-y-[12px] before:border-l-[24px] before:border-y-transparent before:border-l-rose-50 "
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            ポートフォリオサイトにようこそ 🐾<br /><br />
+            主に学習の記録をまとめています。<br /><br />
+            最近はJava Goldの資格取得に向けて勉強中です ✏️
+          </p>
+
+          {/* プロフィール画像（右側） */}
+          <Image
+            src="/cat_img.png"
+            alt="K.Mio"
+            width={300}
+            height={300}
+            className="rounded-full"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* ==== NEWSセクション ==== */}
+        <div className="mt-12 space-y-4">
+          <h2 className="text-xl font-bold inline-block relative pb-1">
+            <span className="relative z-10">
+              News
+            </span>
+            <span className="absolute left-0 bottom-0 w-full h-1 bg-rose-300 rounded-full z-0"></span>
+          </h2>
+
+          <ul className="space-y-2">
+
+            {news.slice(0, 5).map((item, index) => {
+              // "2025/06/22" → Date オブジェクトに変換
+              const newsDate = parse(item.date, 'yyyy/MM/dd', new Date());
+              const now = new Date();
+
+              // 経過日数の計算
+              const diffTime = now.getTime() - newsDate.getTime();
+              const diffDays = diffTime / (1000 * 60 * 60 * 24); // ミリ秒→日
+
+              const isNew = diffDays <= 3;
+
+              return (
+                <li key={index} className="flex items-start">
+                  <div className="w-[50px] flex justify-end pr-2">
+                    {isNew && (
+                      <span className="text-xs text-white bg-rose-300 rounded-full px-2 py-0.5 whitespace-nowrap">
+                        NEW
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-base text-gray-600 font-medium">
+                    <span className="font-mono text-xs text-gray-400 mr-2">{item.date}</span>
+                    {item.text}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="pt-2">
+            <a
+              href="/news"
+              className="text-sm text-rose-400 hover:underline"
+            >
+              過去のNews一覧を見る →
+            </a>
+          </div>
+        </div>
+
+      </section>
+    </Layout>
   );
 }
