@@ -49,6 +49,7 @@ const works = [
         images: ["/portfolio-site.png"],
         techs: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
         github: "https://github.com/komkom2/portfolioKomkom2",
+        site: "https://portfolio-omega-swart-uroi67i01c.vercel.app/",
         description: `Next.js と Tailwind CSS を使って作成した、自分用のポートフォリオサイトです。\n\n
             プロフィール、作品一覧、News、お問い合わせフォームなどをシンプルにまとめました。\n\n
             学習の記録や今後の成果物を紹介するために、少しずつアップデートしていく予定です ✏️`,
@@ -161,8 +162,8 @@ export default function Works() {
                                             key={i}
                                             src={img}
                                             alt={`${work.title} screenshot ${i + 1}`}
-                                            width={work.site ? 300 : 200}
-                                            height={work.site ? 200 : 300}
+                                            width={work.site ? 500 : 200}
+                                            height={work.site ? 300 : 300}
                                             className="rounded-lg object-cover"
                                         />
                                     ))}
